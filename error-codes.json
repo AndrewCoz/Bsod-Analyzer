@@ -1,0 +1,542 @@
+{
+    "errorCodes": [
+      {
+        "code": "MEMORY_MANAGEMENT",
+        "hexCode": "0x0000001A",
+        "description": "This error indicates a memory management issue, potentially related to faulty RAM, driver conflicts, or system file corruption.",
+        "technicalDetails": "Occurs when the memory manager encounters corruption in its internal data structures or when a driver has corrupted memory that the memory manager was using.",
+        "commonCauses": [
+          "Faulty RAM or RAM incompatibility",
+          "Driver conflicts or outdated drivers",
+          "System file corruption",
+          "BIOS/firmware issues",
+          "Malware infection"
+        ],
+        "hardwareSpecific": {
+          "ram": "Test RAM modules individually to identify faulty sticks. Check for compatibility with motherboard specifications.",
+          "motherboard": "Ensure BIOS is updated to the latest version. Check for known memory controller issues."
+        },
+        "driverIssues": [
+          {
+            "category": "Graphics",
+            "knownProblems": "NVIDIA and AMD graphics drivers are common culprits. Recent updates may conflict with system memory management.",
+            "solution": "Roll back to a previous stable version or update to the latest version from the manufacturer's website."
+          },
+          {
+            "category": "Storage",
+            "knownProblems": "SSD controller drivers can cause memory conflicts, especially during high I/O operations.",
+            "solution": "Update storage controllers and ensure firmware for SSDs is current."
+          }
+        ],
+        "solutions": [
+          {
+            "title": "Run Windows Memory Diagnostic",
+            "description": "Check for RAM hardware issues",
+            "steps": [
+              "Press Windows key + R to open Run dialog",
+              "Type 'mdsched.exe' and press Enter",
+              "Choose 'Restart now and check for problems'",
+              "Let the test complete and review results"
+            ]
+          },
+          {
+            "title": "Update Device Drivers",
+            "description": "Particularly graphics and storage drivers",
+            "steps": [
+              "Open Device Manager (right-click Start > Device Manager)",
+              "Expand categories for Graphics, Storage controllers, and Network adapters",
+              "Right-click on each device and select 'Update driver'",
+              "For best results, download the latest drivers directly from the manufacturer's website"
+            ]
+          },
+          {
+            "title": "Run System File Checker",
+            "description": "Scan for and repair corrupted system files",
+            "steps": [
+              "Open Command Prompt as administrator",
+              "Type 'sfc /scannow' and press Enter",
+              "Wait for the process to complete (may take some time)",
+              "Restart your computer after the scan completes"
+            ]
+          },
+          {
+            "title": "Check for Windows Updates",
+            "description": "Ensure your system is up to date",
+            "steps": [
+              "Open Settings > Update & Security",
+              "Click 'Check for updates'",
+              "Install any available updates",
+              "Restart your computer"
+            ]
+          },
+          {
+            "title": "Adjust Virtual Memory Settings",
+            "description": "Configure your page file correctly",
+            "steps": [
+              "Right-click on 'This PC' or 'My Computer' and select 'Properties'",
+              "Click on 'Advanced system settings'",
+              "In the Advanced tab, under Performance, click 'Settings'",
+              "Go to the Advanced tab and click 'Change' under Virtual memory",
+              "Uncheck 'Automatically manage paging file size for all drives'",
+              "Select the system drive (usually C:), select 'Custom size'",
+              "Set Initial size to 1.5x your RAM and Maximum size to 3x your RAM",
+              "Click Set, then OK on all dialog boxes",
+              "Restart your computer"
+            ]
+          }
+        ]
+      },
+      {
+        "code": "IRQL_NOT_LESS_OR_EQUAL",
+        "hexCode": "0x0000000A",
+        "description": "This error occurs when a driver attempts to access a memory address without proper authorization, often caused by faulty drivers or hardware.",
+        "technicalDetails": "A kernel-mode process or driver attempted to access a memory location with an IRQL (Interrupt Request Level) that was too high. This is typically a driver coding error.",
+        "commonCauses": [
+          "Corrupted or incompatible device drivers",
+          "Hardware conflicts",
+          "Memory (RAM) issues",
+          "Malware infection",
+          "System file corruption"
+        ],
+        "hardwareSpecific": {
+          "network": "Wireless and Ethernet adapter drivers are common culprits. Disable network hardware temporarily to test.",
+          "ram": "Run memory diagnostics to check for RAM errors. Try reseating RAM modules."
+        },
+        "driverIssues": [
+          {
+            "category": "Network",
+            "knownProblems": "Realtek, Broadcom, and Intel network drivers frequently cause this error. Wireless drivers are particularly problematic.",
+            "solution": "Update network drivers from manufacturer's website or temporarily disable network adapters to isolate the issue."
+          },
+          {
+            "category": "Audio",
+            "knownProblems": "Realtek and Creative audio drivers can conflict with memory management.",
+            "solution": "Update audio drivers or try temporarily disabling audio devices to test."
+          }
+        ],
+        "solutions": [
+          {
+            "title": "Update All Drivers",
+            "description": "Focus on recently installed or updated drivers",
+            "steps": [
+              "Open Device Manager (right-click Start > Device Manager)",
+              "Look for devices with yellow warning symbols",
+              "Right-click on each device and select 'Update driver'",
+              "For most reliable results, visit the manufacturer's website for each hardware component",
+              "Pay special attention to network adapters, display adapters, and storage controllers"
+            ]
+          },
+          {
+            "title": "Check for Virus or Malware",
+            "description": "Run a full system scan with your antivirus software",
+            "steps": [
+              "Update your antivirus definitions",
+              "Run a full system scan, not a quick scan",
+              "Follow any recommendations for removing threats",
+              "Consider using Windows Defender Offline scan for persistent threats"
+            ]
+          },
+          {
+            "title": "Boot in Safe Mode",
+            "description": "Test if the problem persists in Safe Mode",
+            "steps": [
+              "Restart your computer",
+              "Press F8 repeatedly during startup (before Windows logo appears)",
+              "Select 'Safe Mode' from the boot options menu",
+              "If the error doesn't occur in Safe Mode, a third-party driver is likely the cause"
+            ]
+          },
+          {
+            "title": "Check RAM",
+            "description": "Test your memory with Windows Memory Diagnostic",
+            "steps": [
+              "Press Windows key + R",
+              "Type 'mdsched.exe' and press Enter",
+              "Choose to restart now and check for problems",
+              "Let the test complete and check for any reported errors"
+            ]
+          }
+        ]
+      },
+      {
+        "code": "SYSTEM_SERVICE_EXCEPTION",
+        "hexCode": "0x0000003B",
+        "description": "This error occurs when a system service encounters an exception it cannot handle, often related to system drivers or hardware issues.",
+        "technicalDetails": "A critical system process or driver attempted an operation that triggered an unhandled exception. Often involves filesystem, graphics, or system kernel components.",
+        "commonCauses": [
+          "Driver conflicts or outdated drivers",
+          "System file corruption",
+          "Hardware issues (particularly graphics cards)",
+          "Memory (RAM) problems",
+          "Antivirus software conflicts"
+        ],
+        "hardwareSpecific": {
+          "graphics": "NVIDIA and AMD graphics can trigger this error, especially after driver updates or during heavy GPU usage.",
+          "storage": "Check for SMART errors on your drives. Run disk diagnostics to verify drive health."
+        },
+        "driverIssues": [
+          {
+            "category": "Graphics",
+            "knownProblems": "Driver version mismatches after Windows updates. DirectX incompatibilities.",
+            "solution": "Perform a clean installation of graphics drivers using Display Driver Uninstaller (DDU) before installing the latest drivers."
+          },
+          {
+            "category": "Antivirus",
+            "knownProblems": "Deep system monitoring can conflict with Windows services.",
+            "solution": "Temporarily disable third-party antivirus to test. Update to latest version or consider alternative security software."
+          }
+        ],
+        "solutions": [
+          {
+            "title": "Update System Drivers",
+            "description": "Focus on graphics, network, and storage drivers",
+            "steps": [
+              "Open Device Manager (Windows key + X, then select Device Manager)",
+              "Expand the categories for display adapters, network adapters, and storage controllers",
+              "Right-click on each device and select 'Update driver'",
+              "For graphics cards, visit the manufacturer website (NVIDIA, AMD, Intel) for latest drivers"
+            ]
+          },
+          {
+            "title": "Scan for Malware",
+            "description": "Run a full system scan for malware or viruses",
+            "steps": [
+              "Open Windows Security (Start > Settings > Update & Security > Windows Security)",
+              "Select 'Virus & threat protection'",
+              "Click 'Scan options' and select 'Full scan'",
+              "Click 'Scan now' and wait for the process to complete",
+              "Consider running Windows Defender Offline scan for persistent threats"
+            ]
+          },
+          {
+            "title": "Check System Files",
+            "description": "Run SFC /scannow to repair system files",
+            "steps": [
+              "Open Command Prompt as administrator (right-click Start > Command Prompt (Admin))",
+              "Type 'sfc /scannow' and press Enter",
+              "Wait for the process to complete (may take 15-30 minutes)",
+              "If SFC finds errors but can't fix them all, run 'DISM /Online /Cleanup-Image /RestoreHealth'",
+              "Run SFC again after DISM completes"
+            ]
+          },
+          {
+            "title": "Update Windows",
+            "description": "Install all pending Windows updates",
+            "steps": [
+              "Open Settings > Update & Security > Windows Update",
+              "Click 'Check for updates'",
+              "Install all available updates, including optional updates",
+              "Restart your computer after updates are installed"
+            ]
+          }
+        ]
+      },
+      {
+        "code": "NTFS_FILE_SYSTEM",
+        "hexCode": "0x00000024",
+        "description": "This error occurs when there's a problem with the NTFS file system, typically related to disk corruption, hardware issues, or driver problems.",
+        "technicalDetails": "The NTFS file system driver encountered a condition it cannot handle. Usually indicates physical drive issues, filesystem corruption, or storage controller problems.",
+        "commonCauses": [
+          "Hard disk or SSD hardware failure",
+          "File system corruption",
+          "Outdated storage controllers",
+          "Bad sectors on the disk",
+          "Power loss during disk write operations"
+        ],
+        "hardwareSpecific": {
+          "ssd": "Check for firmware updates for your SSD. Ensure TRIM is enabled and the drive has sufficient free space.",
+          "hdd": "Run thorough disk diagnostics to check for mechanical failures or bad sectors."
+        },
+        "driverIssues": [
+          {
+            "category": "Storage Controllers",
+            "knownProblems": "SATA, RAID, and NVMe controller drivers can cause filesystem issues if outdated or corrupted.",
+            "solution": "Update chipset and storage controller drivers from the motherboard manufacturer's website."
+          },
+          {
+            "category": "Disk Filters",
+            "knownProblems": "Disk encryption, backup software, and anti-virus disk monitoring can interfere with NTFS operations.",
+            "solution": "Update or temporarily disable disk filter drivers from third-party software."
+          }
+        ],
+        "solutions": [
+          {
+            "title": "Run CHKDSK",
+            "description": "Check and repair disk errors",
+            "steps": [
+              "Open Command Prompt as administrator",
+              "Type 'chkdsk C: /f /r' (replace C: with your system drive if different)",
+              "If the drive is in use, schedule the check for next reboot by typing 'Y'",
+              "Restart your computer to begin the scan",
+              "Let the process complete (may take several hours for large drives)"
+            ]
+          },
+          {
+            "title": "Update Storage Drivers",
+            "description": "Update disk and storage controller drivers",
+            "steps": [
+              "Open Device Manager (Windows key + X > Device Manager)",
+              "Expand 'Disk drives' and 'Storage controllers' categories",
+              "Right-click on each device and select 'Update driver'",
+              "For best results, download drivers from your PC or motherboard manufacturer's website"
+            ]
+          },
+          {
+            "title": "Check Disk Health",
+            "description": "Check physical disk health with S.M.A.R.T diagnostics",
+            "steps": [
+              "Download and install a S.M.A.R.T monitoring tool (like CrystalDiskInfo)",
+              "Run the software and check the health status of your drives",
+              "Look for warning indicators like 'Caution' or 'Bad' status",
+              "If problems are found, back up your data immediately and consider replacing the drive"
+            ]
+          },
+          {
+            "title": "Disable Fast Startup",
+            "description": "Windows Fast Startup can sometimes cause filesystem issues",
+            "steps": [
+              "Open Control Panel > Power Options",
+              "Click 'Choose what the power buttons do'",
+              "Click 'Change settings that are currently unavailable'",
+              "Uncheck 'Turn on fast startup'",
+              "Click Save changes and restart your computer"
+            ]
+          }
+        ]
+      },
+      {
+        "code": "KERNEL_DATA_INPAGE_ERROR",
+        "hexCode": "0x0000007A",
+        "description": "This error occurs when the system is unable to read data from the disk into memory, often due to faulty RAM, disk errors, or hardware issues.",
+        "technicalDetails": "The system attempted to read data that was 'paged' to disk back into memory, but the read operation failed. This may indicate physical disk or memory hardware failures.",
+        "commonCauses": [
+          "Failing hard drive or SSD",
+          "RAM memory issues",
+          "Corrupted filesystem",
+          "Virus or malware infection",
+          "Power supply issues"
+        ],
+        "hardwareSpecific": {
+          "ram": "Test your RAM with Memtest86+ for multiple passes to detect intermittent errors.",
+          "psu": "Insufficient or unstable power can cause disk or memory errors. Consider testing with a known-good power supply."
+        },
+        "driverIssues": [
+          {
+            "category": "Storage",
+            "knownProblems": "Some storage driver updates can cause compatibility issues, especially with older hardware.",
+            "solution": "Try rolling back storage controllers to previously stable versions."
+          },
+          {
+            "category": "System Management",
+            "knownProblems": "Power management and system monitoring drivers can interfere with page file operations.",
+            "solution": "Update chipset drivers and system management software."
+          }
+        ],
+        "solutions": [
+          {
+            "title": "Check Drive for Errors",
+            "description": "Run CHKDSK to find and fix disk errors",
+            "steps": [
+              "Open Command Prompt as administrator",
+              "Type 'chkdsk C: /f /r /x' (replace C: with your system drive letter)",
+              "Press Y if prompted to schedule disk check on next startup",
+              "Restart your computer",
+              "Let the scan complete fully (can take several hours for large drives)"
+            ]
+          },
+          {
+            "title": "Test RAM",
+            "description": "Check memory for hardware errors",
+            "steps": [
+              "Press Windows key + R",
+              "Type 'mdsched.exe' and press Enter",
+              "Select 'Restart now and check for problems'",
+              "Let the memory test run completely (preferably multiple passes)",
+              "If errors are found, try removing and reseating RAM modules or replacing faulty modules"
+            ]
+          },
+          {
+            "title": "Disable Paging File Temporarily",
+            "description": "Test if the issue is related to the paging file",
+            "steps": [
+              "Right-click on This PC or My Computer and select Properties",
+              "Click 'Advanced system settings'",
+              "Under the Advanced tab, click 'Settings' in the Performance section",
+              "Go to the Advanced tab and click 'Change' under Virtual memory",
+              "Uncheck 'Automatically manage paging file size for all drives'",
+              "Select 'No paging file' option and click 'Set'",
+              "Click OK on all dialogs and restart",
+              "If the error stops, re-enable the paging file on a different drive"
+            ]
+          },
+          {
+            "title": "Check for Malware",
+            "description": "Scan for infections that may be corrupting disk or memory",
+            "steps": [
+              "Run a full system scan with Windows Defender or your antivirus software",
+              "For persistent issues, boot into Safe Mode and run the scan",
+              "Consider using Windows Defender Offline scan for rootkits and boot-sector viruses",
+              "If malware is found, follow the recommended removal steps"
+            ]
+          }
+        ]
+      },
+      {
+        "code": "KMODE_EXCEPTION_NOT_HANDLED",
+        "hexCode": "0x0000001E",
+        "description": "This error occurs when a kernel-mode program encounters an exception that is not handled by an exception handler. Often caused by faulty device drivers.",
+        "technicalDetails": "A kernel-mode process (usually a driver) generated an exception that the error handler did not catch. The specific module causing the crash is often identified in the error details.",
+        "commonCauses": [
+          "Incompatible or outdated device drivers",
+          "Hardware conflicts",
+          "Memory (RAM) problems",
+          "Overclocking issues",
+          "Corrupted system files"
+        ],
+        "hardwareSpecific": {
+          "cpu": "If overclocked, return to default settings and test. Check CPU temperatures under load.",
+          "peripherals": "Try disconnecting non-essential peripherals to isolate potential hardware conflicts."
+        },
+        "driverIssues": [
+          {
+            "category": "Network",
+            "knownProblems": "Wireless and VPN drivers often cause this error, especially after Windows updates.",
+            "solution": "Update network adapter drivers from manufacturer website or temporarily disable network adapters to test."
+          },
+          {
+            "category": "Security Software",
+            "knownProblems": "Kernel-level security tools, anti-cheat software, and deep system monitoring can trigger exceptions.",
+            "solution": "Update security software or temporarily disable to test. Look for recent software installations that coincide with error onset."
+          }
+        ],
+        "solutions": [
+          {
+            "title": "Identify the Problematic Driver",
+            "description": "Find which driver is causing the crash",
+            "steps": [
+              "Check the blue screen error message for mentions of specific .sys files",
+              "Open Event Viewer (Windows key + X, select Event Viewer)",
+              "Navigate to Windows Logs > System",
+              "Look for Error events around the time of crash",
+              "Note any driver or device mentioned in the error details"
+            ]
+          },
+          {
+            "title": "Update or Rollback Drivers",
+            "description": "Fix driver compatibility issues",
+            "steps": [
+              "Once you've identified the problematic driver, open Device Manager",
+              "Find the associated device (often displays, network adapters, or storage controllers)",
+              "Right-click on the device and select 'Properties'",
+              "Go to the 'Driver' tab",
+              "Click 'Update Driver' to install newer drivers, or",
+              "Click 'Roll Back Driver' if problems started after a recent update"
+            ]
+          },
+          {
+            "title": "Run SFC and DISM",
+            "description": "Repair system file corruption",
+            "steps": [
+              "Open Command Prompt as administrator",
+              "Run 'DISM /Online /Cleanup-Image /RestoreHealth'",
+              "Wait for the process to complete (may take 15-20 minutes)",
+              "Then run 'sfc /scannow'",
+              "Restart your computer after both commands complete"
+            ]
+          },
+          {
+            "title": "Disable Fast Startup",
+            "description": "Prevent driver initialization issues",
+            "steps": [
+              "Open Control Panel > Power Options",
+              "Click 'Choose what the power buttons do'",
+              "Click 'Change settings that are currently unavailable'",
+              "Uncheck 'Turn on fast startup'",
+              "Click 'Save changes'"
+            ]
+          }
+        ]
+      },
+      {
+        "code": "CRITICAL_PROCESS_DIED",
+        "hexCode": "0x000000EF",
+        "description": "This error occurs when a critical system process unexpectedly terminates, forcing Windows to shut down. It's often related to driver issues, system file corruption, or hardware problems.",
+        "technicalDetails": "The CRITICAL_PROCESS_DIED bug check indicates that a critical system process died. This typically means that a critical component of Windows has shut down or been terminated unexpectedly, leaving the system in an unstable state that requires a restart.",
+        "commonCauses": [
+          "System file corruption",
+          "Incompatible or faulty device drivers",
+          "Hardware issues (particularly RAM or storage)",
+          "Windows update failures",
+          "Malware infection"
+        ],
+        "hardwareSpecific": {
+          "ram": "Memory issues can cause critical processes to crash. Run memory diagnostics to check for RAM errors.",
+          "storage": "Disk errors can corrupt system files. Check disk health with chkdsk and SMART tools."
+        },
+        "driverIssues": [
+          {
+            "category": "System",
+            "knownProblems": "Recently updated or incompatible system drivers can cause critical process failures.",
+            "solution": "Boot into Safe Mode to identify problematic drivers, roll back recent driver updates, or update to the latest versions."
+          },
+          {
+            "category": "Antivirus",
+            "knownProblems": "Security software can interfere with critical system processes.",
+            "solution": "Temporarily disable third-party security software to test if it's causing the issue."
+          }
+        ],
+        "solutions": [
+          {
+            "title": "Run System File Checker",
+            "description": "Scan for and repair corrupted system files",
+            "steps": [
+              "Open Command Prompt as administrator",
+              "Type 'sfc /scannow' and press Enter",
+              "Wait for the process to complete (may take some time)",
+              "Restart your computer after the scan completes"
+            ]
+          },
+          {
+            "title": "Run DISM Tool",
+            "description": "Repair Windows system image",
+            "steps": [
+              "Open Command Prompt as administrator",
+              "Type 'DISM /Online /Cleanup-Image /RestoreHealth' and press Enter",
+              "Wait for the process to complete (may take 10-20 minutes)",
+              "Run 'sfc /scannow' afterward to fix any remaining issues",
+              "Restart your computer"
+            ]
+          },
+          {
+            "title": "Boot into Safe Mode",
+            "description": "Boot Windows with minimal drivers and services",
+            "steps": [
+              "Hold Shift while clicking Restart in the Start menu",
+              "Go to Troubleshoot > Advanced options > Startup Settings > Restart",
+              "When your computer restarts, select Safe Mode",
+              "If the system is stable in Safe Mode, the issue is likely with a third-party driver or service"
+            ]
+          },
+          {
+            "title": "Check for Windows Updates",
+            "description": "Install any pending updates",
+            "steps": [
+              "Go to Settings > Update & Security > Windows Update",
+              "Click 'Check for updates'",
+              "Install all available updates",
+              "Restart your computer"
+            ]
+          },
+          {
+            "title": "Check RAM and Disk Health",
+            "description": "Test hardware components for errors",
+            "steps": [
+              "Run Windows Memory Diagnostic (type 'mdsched.exe' in Run dialog)",
+              "Run Check Disk (open Command Prompt as admin and type 'chkdsk /f /r C:')",
+              "Schedule the disk check to run at next restart and reboot your system"
+            ]
+          }
+        ]
+      }
+    ]
+  }

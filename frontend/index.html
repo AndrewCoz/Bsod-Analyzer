@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BSOD Error Analyzer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>BSOD Error Analyzer</h1>
+      <p class="tagline">
+        Upload your Blue Screen error logs for instant troubleshooting advice
+      </p>
+    </header>
+
+    <div class="card">
+      <div class="tabs">
+        <div class="tab active" data-tab="upload">Upload Dump File</div>
+        <div class="tab" data-tab="code">Enter Error Code</div>
+      </div>
+
+      <div class="tab-content active" id="upload-tab">
+        <form id="dump-form">
+          <div class="form-group">
+            <label for="dump-file">
+              Upload your MEMORY.DMP or Minidump file
+            </label>
+            <div class="file-upload" id="file-drop-area">
+              <span class="file-upload-icon">📁</span>
+              <p>Drag &amp; drop your dump file here or click to browse</p>
+              <input type="file" id="dump-file" accept=".dmp,.mdmp" />
+            </div>
+            <p id="file-name" style="text-align: center; margin-top:10px"></p>
+          </div>
+          <button type="submit">Analyze Dump File</button>
+        </form>
+      </div>
+
+      <div class="tab-content" id="code-tab">
+        <form id="code-form">
+          <div class="form-group">
+            <label for="error-code">Enter BSOD Error Code or Message</label>
+            <input
+              type="text"
+              id="error-code"
+              placeholder="e.g., MEMORY_MANAGEMENT, 0x0000001A"
+            />
+          </div>
+          <button type="submit" id="analyze-code-btn">Analyze Error Code</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add the system scan button here -->
+    <div class="scan-system-container">
+      <button id="scan-system-btn" class="scan-button">
+        <span class="scan-icon">🔍</span> Scan This Computer for BSOD History
+      </button>
+      <p class="scan-info">Searches your Windows system for eventlog errors and analyzes them</p>
+      
+      <!-- Add information box about scan period and error codes -->
+      <div class="scan-info-box">
+        <p><strong>Note:</strong> This scan only shows BugCheck events from the last 7 days.</p>
+        <p><strong>Tip:</strong> For detailed solutions, enter any error code found (like 0x000000EF) in the "Enter Error Code" tab.</p>
+      </div>
+    </div>
+
+    <div class="result-area" id="result-section">
+      <div class="card">
+        <h2>Analysis Results</h2>
+        <div
+          id="loading"
+          style="display: none; text-align: center; margin-top: 10px"
+        >
+          <p>Analyzing your error... Please wait.</p>
+        </div>
+        <div id="results-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- only one script include, here at the bottom -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  bsod-analyzer:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - bsod-data:/app/bsod-analyzer-python/uploads
+    restart: unless-stopped
+
+volumes:
+  bsod-data: 
