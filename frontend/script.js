@@ -2,7 +2,8 @@
 // Handles UI, API calls, and file uploads for the student project
 
 // API base URL
-const API_BASE = 'http://localhost:5000';
+const API_BASE = '';  // Empty string for relative URL to current host
+// Alternative: const API_BASE = window.location.origin;  // For absolute URL to current host
 
 // Wait for DOM to load
 // Modularize code and add comments for clarity

@@ -68,7 +68,10 @@ except Exception as e:
 # I'm setting up routes to serve my frontend files
 @app.route('/')
 def serve_index():
-    return send_from_directory('../frontend', 'index.html')
+    if os.path.exists(os.path.join(FRONTEND_DIR, 'index.html')):
+        return send_from_directory(FRONTEND_DIR, 'index.html')
+    else:
+        return send_from_directory('../frontend', 'index.html')
 
 @app.route('/<path:path>')
 def serve_static(path):
@@ -423,5 +426,6 @@ def scan_system():
 if __name__ == '__main__':
     # I'm checking whether I should run in development or production mode
     debug_mode = os.environ.get('FLASK_ENV') == 'development'
-    print(f"→  Serving on http://0.0.0.0:5000 (Debug: {debug_mode})")
-    app.run(debug=debug_mode, port=5000, host='0.0.0.0')
+    port = int(os.environ.get('PORT', 5000))
+    print(f"→  Serving on http://0.0.0.0:{port} (Debug: {debug_mode})")
+    app.run(debug=debug_mode, port=port, host='0.0.0.0')
